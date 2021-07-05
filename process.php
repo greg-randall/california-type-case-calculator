@@ -69,16 +69,18 @@ foreach ($page as $char) {
         echo $char;
     }
 }
-echo "<Br>";
+echo "</p><Br><ul>";
+
+arsort($missing);
 
 foreach ($missing as $key => $value) {
     if ($value > 0) {
         echo "Need $value more $key<br>";
     }
 }
-?>
+?></ul>
 
-</p>
+
 </div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
 	</script>
