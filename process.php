@@ -32,7 +32,7 @@ deal with zero and period and left/right square brackets
 
 
 
-if (key_exists("weight", $_POST)) {
+if ($_POST['radio']=="weight") {
     foreach ($valid_letters as $letter) {
         //make sure both keys exist
         if (key_exists("weight_one_$letter", $_POST) && key_exists("weight_total_$letter", $_POST)) {
@@ -53,7 +53,7 @@ if (key_exists("weight", $_POST)) {
             $letters_calc[$letter] = 0; //if both keys don't exist set the letter to zero
         }
     }
-} else if (key_exists("previous", $_POST)) {
+} else if ($_POST['radio']=="previous") {
     $peviously_computed = json_decode($_POST['previous_data'], true);
     foreach ($valid_letters as $letter) {
         if (key_exists($letter, $peviously_computed)) {
@@ -65,7 +65,7 @@ if (key_exists("weight", $_POST)) {
         }
     }
     //echo "<pre>".print_r($peviously_computed,true)."</pre>";
-} else if (key_exists("direct", $_POST)) {
+} else if ($_POST['radio']=="direct") {
     foreach ($valid_letters as $letter) {
         if (key_exists("$letter", $_POST)) {
             if (!is_null($_POST["$letter"]) && is_numeric($_POST["$letter"])) {
