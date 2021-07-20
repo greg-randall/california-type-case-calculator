@@ -128,9 +128,9 @@ echo "</p>
 <hr>";
 
 if ($enough_of_everything) {
-    echo "<h3 class=\"text-center\">You have enough letters to print the page that you entered!</h3>";
+    echo "<h3 class=\"text-center\">You have enough letters to et the page that you entered!</h3>";
 } else {
-    echo "<h3 class=\"text-center\">You do not have enough letters to print the page that you entered.</h3>";
+    echo "<h3 class=\"text-center\">You do not have enough letters to set the page that you entered.</h3>";
 }
 
 echo "<br><br><div class=\"row\"><div class=\"col-md-6\"><ul>";
