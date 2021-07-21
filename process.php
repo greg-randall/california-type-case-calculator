@@ -54,15 +54,27 @@ if ($_POST['radio']=="weight") {
         }
     }
 } else if ($_POST['radio']=="previous") {
-    $peviously_computed = json_decode($_POST['previous_data'], true);
-    foreach ($valid_letters as $letter) {
-        if (key_exists($letter, $peviously_computed)) {
-            if ($peviously_computed[$letter] < 1) {
-                $letters_calc[$letter] = 0;
-            } else {
-                $letters_calc[$letter] = $peviously_computed[$letter];
+    //validate json
+    if(validate_json($_POST['previous_data'])){
+        $peviously_computed = json_decode($_POST['previous_data'], true);
+        foreach ($valid_letters as $letter) {
+            if (key_exists($letter, $peviously_computed)) {
+                if ($peviously_computed[$letter] < 1) {
+                    $letters_calc[$letter] = 0;
+                } else {
+                    $letters_calc[$letter] = $peviously_computed[$letter];
+                }
             }
         }
+    //if field is empty
+    }else if(strlen($_POST['previous_data'])<1){
+        echo "<p>Blank Previous Data, Please Input Data.</p>";
+        exit();
+    //if field is actually invalid
+    //consider trying to fix json or something? 
+    }else{
+        echo "<p>Invalid Previous Data Input Data.</p>";
+        exit();
     }
     //echo "<pre>".print_r($peviously_computed,true)."</pre>";
 } else if ($_POST['radio']=="direct") {
@@ -164,3 +176,17 @@ foreach ($unknown as $key => $value) {
     </script>
 </body>
 </html>
+
+
+
+<?php
+
+function validate_json($str=NULL) {
+    if (is_string($str)) {
+        @json_decode($str);
+        return (json_last_error() === JSON_ERROR_NONE);
+    }
+    return false;
+}
+
+?>
